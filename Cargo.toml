@@ -1,0 +1,10 @@
+[package]
+name = "expiring_map"
+version = "0.1.0"
+authors = ["Josh Mcguigan"]
+description = "A map whose entries expire after a configured time to live"
+repository = "https://github.com/JoshMcguigan/expiring_map"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
