@@ -77,6 +77,10 @@ impl<K, V> InnerExpiringMap<K, V>
     pub(crate) fn remove_expired_entries(&mut self, current_time: SystemTime) {
         self.inner.retain(|_k, v| current_time.le(&v.expire_time));
     }
+
+    pub(crate) fn remove(&mut self, k: K) {
+        self.inner.remove(&k);
+    }
 }
 
 #[cfg(test)]
@@ -97,6 +101,9 @@ mod tests {
 
         assert_eq!(Some(&mut "valA".to_owned()), map.get_mut("keyA", SystemTime::now()));
         assert_eq!(Some(&"valA".to_owned()), map.get("keyA", SystemTime::now()));
+        
+        map.remove("keyA".to_owned());
+        assert_eq!(None, map.get("keyA", SystemTime::now()));
     }
 
     #[test]

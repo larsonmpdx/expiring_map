@@ -40,4 +40,8 @@ impl<K, V> ExpiringMap<K, V>
     pub fn remove_expired_entries(&mut self) {
         self.inner.remove_expired_entries(SystemTime::now());
     }
+
+    pub fn remove(&mut self, k: K) {
+        self.inner.remove(k);
+    }
 }
